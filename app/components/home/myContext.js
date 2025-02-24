@@ -17,7 +17,7 @@ export const AppProvider = ({ children }) => {
   })
   const [profile, setProfile] = useState({
     name:"Life Blossom",
-    address:"Hospital address: 20 Fatade Road Baruwa-Ipaja",
+    address:" 20 Fatade Road Baruwa-Ipaja",
     phone:"+234 905 803 8476",
     email:"Lifeblossomcarencurehospital@mail.com",
     

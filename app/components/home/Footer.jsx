@@ -95,7 +95,7 @@ const Footer = () => {
                   alt="Life Blossom Logo"
                 />
               <div className="text-start">
-                <p><FontAwesomeIcon icon={faMapMarkerAlt} size="lg" />Address :{profile.address}</p>
+                <p><FontAwesomeIcon icon={faMapMarkerAlt} size="lg" />{profile.address}</p>
 
               </div>
             </Col>
