@@ -24,12 +24,12 @@ export default function LifeBlossomLanding() {
         <img
           src="/images/welcomeb.jpg"
           alt="Hospital Facility"
-          className={`${styles.heroImage} d-none d-lg-block animated zoomIn mb-4`}
+          className={`${styles.heroImage} d-none d-md-block animated zoomIn mb-4`}
         />
         <img
-          src="/images/estd.gif"
+          src="/images/estdd.gif"
           alt="Hospital Facility"
-          className={`${styles.heroImage} d-lg-none d-block animated zoomIn mb-4`}
+          className={`${styles.heroImage} d-md-none d-block animated zoomIn mb-4`}
         />
 
         <div className="mt-4 bg-dark h-100 mb-2 px-lg-5">
