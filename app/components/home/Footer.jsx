@@ -16,6 +16,8 @@ import {
   Nav,
   Button,
 } from "react-bootstrap";
+import { useAppContext } from "../../components/home/myContext";
+
 
 const Footer = () => {
   const healthTips = [
@@ -27,12 +29,21 @@ const Footer = () => {
   ];
 
   const [currentTip, setCurrentTip] = useState(0);
+  const { profile,data, setData } = useAppContext();
+
   return (
     <div>
       <Image
         src="/images/healtho.png"
         alt="Hospital Facility"
-        className={`w-100`}
+        className="col-12 d-md-block d-none"
+        width={1120} // Set width
+        height={500} //
+      />
+      <Image
+        src="/images/drr.png"
+        alt="Hospital Facility"
+        className="col-12 d-block d-md-none"
         width={1120} // Set width
         height={500} //
       />
@@ -83,8 +94,8 @@ const Footer = () => {
                   className="d-lg-inline-block d-none  me-2"
                   alt="Life Blossom Logo"
                 />
-              <div>
-                <p><FontAwesomeIcon icon={faMapMarkerAlt} size="lg" />Hospital address: 20 Fatade Road Baruwa-Ipaja</p>
+              <div className="text-start">
+                <p><FontAwesomeIcon icon={faMapMarkerAlt} size="lg" />Address :{profile.address}</p>
 
               </div>
             </Col>

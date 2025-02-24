@@ -1,15 +1,17 @@
 "use client";
 
-import  {useEffect} from "react";
+import  {useEffect,useState} from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useAppContext } from "../../components/home/myContext";
-
+import { FaSpinner } from "react-icons/fa";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import styles from "./contact.module.css"; // Custom CSS module
 
 const ContactUs = () => {
-  const { data, setData } = useAppContext();
+  const { profile,data, setData } = useAppContext();
+  const [mess,setMess] = useState({name:"",email:"",phone:"",message:""})
+  const [ld,setLd] = useState(false)
 
   useEffect(() => {
     setData(() => ({
@@ -20,6 +22,18 @@ const ContactUs = () => {
       records: false,
     }))
   }, [])
+  const Sendmessage = async (e) => {
+    e.preventDefault()
+    setLd(true)
+    
+    // alert(JSON.stringify(mess))
+
+  }
+  const setInput = (e) => {
+    e.preventDefault();
+    setMess((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    // alert("rr");
+  };
   return (
     <div className={styles.container}>
       {/* Header Section */}
@@ -44,7 +58,7 @@ const ContactUs = () => {
         >
           <FaPhone className={styles.icon} />
           <h3>Call Us</h3>
-          <p>+234 901 234 5678</p>
+          <p>{profile.phone}</p>
         </motion.div>
 
         {/* Email */}
@@ -54,9 +68,9 @@ const ContactUs = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <FaEnvelope className={styles.icon} />
+          <FaEnvelope className={`${styles.icon} mx-auto`} />
           <h3>Email</h3>
-          <p>info@lifeblossomhospital.com</p>
+          <p className="smalls">{profile.email}</p>
         </motion.div>
 
         {/* Address */}
@@ -68,7 +82,7 @@ const ContactUs = () => {
         >
           <FaMapMarkerAlt className={styles.icon} />
           <h3>Visit Us</h3>
-          <p>123 Wellness Street, Lagos, Nigeria</p>
+          <p>{profile.address}</p>
         </motion.div>
       </div>
 
@@ -80,17 +94,19 @@ const ContactUs = () => {
         transition={{ duration: 1 }}
       >
         <h2>Send Us a Message</h2>
-        <form>
+        <form onSubmit={Sendmessage}>
           <div className={styles.inputGroup}>
-            <input type="text" placeholder="Your Name" required />
+            <input onChange={setInput} value={mess.name} name="name" className="" type="text" placeholder="Your Name" required />
           </div>
           <div className={styles.inputGroup}>
-            <input type="email" placeholder="Your Email" required />
+            <input onChange={setInput} value={mess.email} name="email" type="email" placeholder="Your Email" required />
           </div>
           <div className={styles.inputGroup}>
-            <textarea placeholder="Your Message" rows="4" required></textarea>
+            <textarea onChange={setInput} value={mess.message} name="message" placeholder="Your Message" rows="4" required></textarea>
           </div>
-          <button type="submit">Send Message</button>
+          {ld ?
+          <button disabled={true} className="btn btn-primary" type="submit">
+          <FaSpinner className="animate-spin" size={30} /> </button> :<button disabled={mess.name.length >2 && mess.email.includes("@")&&mess.email.length > 7 ? false :true} className="btn btn-primary" type="submit">Send Message</button>}
         </form>
       </motion.div>
 

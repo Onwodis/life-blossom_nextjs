@@ -23,8 +23,8 @@ export const metadata = {
   title: "Life blossom",
   description: "We provide medical solutions",
   icons: {
-    icon: "/images/logo.png", // Use the correct file extension
-  },
+    icon: "/images/logo.png"
+  }
 };
 
 export default function RootLayout({
@@ -35,9 +35,10 @@ export default function RootLayout({
     <html data-theme="winter" lang="en">
         <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
         <link rel="icon" type="image/png" href="/images/logo.png" sizes="48x48" />
         <link rel="icon" type="image/svg+xml" href="/images/logo.png" />
+      </Head>
+        
         
 
       <body

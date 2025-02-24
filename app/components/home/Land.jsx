@@ -26,21 +26,17 @@ export default function LifeBlossomLanding() {
           alt="Hospital Facility"
           className={`${styles.heroImage} d-none d-md-block animated zoomIn mb-4`}
         />
-        {/* <img
-          src="/images/estdf.gif"
-          alt="Hospital Facility"
-          className={`${styles.heroImage} d-md-none d-block animated zoomIn mb-4`}
-        /> */}
+      
         <Image
           src="/images/estdg.gif"
           width={600}
           height={400}
           alt="Hospital Facility"
-          className={`${styles.heroImage} d-md-none d-block animated zoomIn mb-4`}
+          className={`${styles.heroImage} d-md-none d-block  mb-4`}
         />
 
         <div className="mt-4 bg-dark h-100 mb-2 px-lg-5">
-          <div className="row jbtw   align-items-center">
+          <div className="row jbtw  align-items-center px-3 col-12">
             <div className="order-lg-2 py-2 col-lg-8 mb-0 mb-lg-0 text-center text-lg-start">
               <h4
                 className="text-white mb-4 animated slideInDown"
@@ -52,7 +48,7 @@ export default function LifeBlossomLanding() {
               <ul>
                   <li className="py-2 text-light text-start">
                   At Life Blossom Care & Cure Hospital, we believe health is
-                                  wealth, and your well-being is our top priority.
+                   wealth, and your well-being is our top priority.
                   </li>
                   <li className="py-2 text-light text-start">
                   With
@@ -61,39 +57,24 @@ export default function LifeBlossomLanding() {
                 helping you live a healthier, happier life.
                   </li>
               </ul>
-              <p
+              {/* <p
                 className="fs-4 text-white px-2  text-start animated slideInDown"
                 data-aos="fade-up"
               >
                  
-              </p>
+              </p> */}
 
-              <div className="text-center">
-                {/* <button
-                  onClick={() => setFmodalShow(true)}
-                  className="btn btn-light py-sm-3 px-sm-5 rounded-pill text-center mx-auto animated slideInLeft"
-                >
-                  Generate Qr-code
-                </button> */}
-                {/* <MyVerticallyCenteredModal
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                />
-                <FirstModal
-                  show={fmodalShow}
-                  onHide={() => setFmodalShow(false)}
-                /> */}
-              </div>
+              
             </div>
             <div
-              className="order-lg-1 col-lg-4 py-4 d-flex justify-content-center text-lg-start"
-              data-aos="zoom-in"
+              className="order-lg-1 text-center col-12 col-lg-4 col-6 py-4 px-1"
+             
             >
               <img
                 src="/images/welcomec.jpg"
-                width="300"
+                width="200"
                 height="35"
-                className="d-inline-block rounded-circle me-2 "
+                className=" rounded-circle imageej mx-auto col-8   "
                 alt="Life Blossom Logo"
               />
             </div>
@@ -132,7 +113,7 @@ export default function LifeBlossomLanding() {
         </Row>
       </Container>
 
-      {/* Health Advice Section */}
+   
       <Container className="my-5" id="health-advice">
         {/* <h2 className="text-center mb-4">Health Advice</h2> */}
         <Row className="my-5" id="align-items-center">
