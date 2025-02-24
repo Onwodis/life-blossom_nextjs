@@ -1,0 +1,19 @@
+.services {
+  padding: 50px;
+  background: white;
+  text-align: center;
+}
+
+.serviceList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.serviceCard {
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
