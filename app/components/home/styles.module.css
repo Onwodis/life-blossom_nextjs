@@ -26,7 +26,7 @@
 }
 @media (max-width: 768px) {
   .heroImage {
-    width: 100vw;  /* Ensure full width */
+    width: 100%;  /* Ensure full width */
     height: auto; /* Ensure full height */
     object-fit: contain; /* Stretches while maintaining aspect ratio */
   }

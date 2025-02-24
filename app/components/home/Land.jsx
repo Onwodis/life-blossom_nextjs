@@ -26,8 +26,15 @@ export default function LifeBlossomLanding() {
           alt="Hospital Facility"
           className={`${styles.heroImage} d-none d-md-block animated zoomIn mb-4`}
         />
-        <img
+        {/* <img
           src="/images/estdf.gif"
+          alt="Hospital Facility"
+          className={`${styles.heroImage} d-md-none d-block animated zoomIn mb-4`}
+        /> */}
+        <Image
+          src="/images/estdf.gif"
+          width={600}
+          height={400}
           alt="Hospital Facility"
           className={`${styles.heroImage} d-md-none d-block animated zoomIn mb-4`}
         />
