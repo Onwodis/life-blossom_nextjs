@@ -26,8 +26,9 @@
 }
 @media (max-width: 768px) {
   .heroImage {
-    width: 100%;  /* Ensure full width */
+    max-width: 100%;  /* Ensure full width */
     height: auto; /* Ensure full height */
-    object-fit: contain; /* Stretches while maintaining aspect ratio */
+    object-fit: contain; 
+    overflow: hidden;
   }
 }

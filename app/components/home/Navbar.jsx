@@ -8,13 +8,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Link from "next/link";
 import Marquee from "./Marquee"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useAppContext } from "./myContext";
 
 
 function NavScrollExample() {
    const [expanded, setExpanded] = useState(false);
   const { data, setData } = useAppContext();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="stickyy bg-dark">

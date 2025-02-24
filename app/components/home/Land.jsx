@@ -32,7 +32,7 @@ export default function LifeBlossomLanding() {
           className={`${styles.heroImage} d-md-none d-block animated zoomIn mb-4`}
         /> */}
         <Image
-          src="/images/estdf.gif"
+          src="/images/estdg.gif"
           width={600}
           height={400}
           alt="Hospital Facility"
