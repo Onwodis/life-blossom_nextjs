@@ -16,7 +16,7 @@ const AboutUs = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h1>About Life Blossom Care & Cure Hospital</h1>
+        <h2>Life Blossom Care & Cure Hospital</h2>
         <p>Your health, our priority – where care meets cure.</p>
       </motion.div>
 
