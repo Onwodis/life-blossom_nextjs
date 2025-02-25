@@ -1,0 +1,117 @@
+import mongoose from "mongoose";
+function money(amount) {
+  var moneyFormat = Number(amount).toLocaleString("en-US", {
+    style: "currency",
+    currency: "NGN",
+  });
+  const dr = "₦" + moneyFormat.split("NGN")[1];
+
+  return dr;
+}
+const UserSchema = new mongoose.Schema({
+  name: String,
+
+  email: { type: String },
+  mname: { type: String, default: "Qrcon" },
+  pwrd: String,
+  hpwrd: String,
+  lastedit: { type: String, default: "nil" },
+
+password: String,
+  plan: String,
+  due: String,
+  mandy: String,
+  edittimes: { type: Number, default: 0 },
+  mandyscan: { type: Number, default: 0 },
+  dmyscan: { type: Number, default: 0 },
+  yearscan: { type: Number, default: 0 },
+  allscan: { type: Number, default: 0 },
+  fyear: { type: Number, default: 0 },
+  dmyy: String,
+  lastscan: String,
+  mandyy: String,
+  dmy: String,
+  userid: String,
+  dueh: String,
+  lastqrid: String,
+  education: String,
+  coupon: Number,
+  clink: String,
+  birthyear: Number,
+  age: Number,
+  phone: String,
+  address: String,
+  salesid: String,
+  salesname: String,
+  smart: Number,
+  mandyearn: { default: 0, type: Number },
+  checkmandy: String,
+  humdmandy: String,
+  account: { default: 0, type: Number },
+  dtotal: { default: money(0), type: String },
+  lastclientpayment: { default: 0, type: Number },
+  catsn: { default: 0, type: Number },
+  productsn: { default: 0, type: Number },
+  lastclient: String,
+  image: String,
+  lastclientpaymenttime: String,
+  address: String,
+  bizname: String,
+  menu: String,
+  barid: String,
+
+  mclients: { default: 0, type: Number },
+  allclients: { default: 0, type: Number },
+  iforder: { default: false, type: Boolean },
+  worker: { default: false, type: Boolean },
+  expired: { default: false, type: Boolean },
+  isbar: { default: false, type: Boolean },
+  iftrained: { default: false, type: Boolean },
+  fromsales: { default: false, type: Boolean },
+  issales: { default: false, type: Boolean },
+  isclient: { default: false, type: Boolean },
+  account: { default: 0, type: Number },
+  withdrawn: { default: 0, type: Number },
+  dwithdrawn: { default: "", type: String },
+  lastseen: { default: "nil", type: String },
+  logintimes: { default: 0, type: Number },
+  total: { default: 0, type: Number },
+  lastpayment: String,
+  lastlogin: { default: "nil", type: String },
+  tempcode: String,
+  logintimes: { type: Number, default: 0 },
+  pwrdchanges: { type: Number, default: 0 },
+  qrsn: { type: Number, default: 0 },
+  transnum: { type: Number, default: 0 },
+  qrid: String,
+  regdate: String,
+  lastqr: String,
+  tempcode: String,
+  admin: { type: Boolean, default: false },
+  client: { type: Boolean, default: false },
+  justsigned: { type: Boolean, default: false },
+  firstqr: String,
+  lastreset: String,
+  ordstring: Date,
+  qrcode: String, // QR Code for the bar owner
+  subscriptionPlan: String, // Monthly, Quarterly, Annually
+  isEmailVerified: { type: Boolean, default: false },
+  clients: Number,
+  mclients: Number,
+  investors: Number,
+  marketers: Number,
+  mmarketers: Number,
+  whatsapps: Number,
+  weblinks: Number,
+  texts: Number,
+  alltrans: Number,
+  mtrans: Number,
+  mqrs: Number,
+});
+
+
+// export default mongoose.model("Userh", UserSchema);
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+
+export default User;
+// module.exports = mongoose.model("Userh", UserSchema);

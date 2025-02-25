@@ -2,12 +2,18 @@
 import { useState,useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2'
+import axios from "axios"
 import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useAppContext } from "../../components/home/myContext";
 
-
+import { useRouter } from "next/navigation";
 export default function Records() {
-  const { profile,data, setData } = useAppContext();
+  const { api,profile,setData ,setUser} = useAppContext();
+  const router = useRouter(); 
+  const [logs, setLogs] = useState({ email: "samuelonwodi@yahoo.com", pwrd: "obiajulu" })
+  
+
   
 
   useEffect(() => {
@@ -19,17 +25,70 @@ export default function Records() {
       records: true,
     }))
   }, [])
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit,setValue, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // State to toggle password
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     setLoading(true);
-    setTimeout(() => {
-      alert(`Welcome, ${data.username}!`);
+
+    try {
+      const res = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({email:data.email,pwrd:data.pwrd}),
+      });
+  
+      const ddata = await res.json();
+
       setLoading(false);
-    }, 2000);
+     
+      
+     
+
+      if (!res.ok) {
+        Swal.fire({
+          title:`Authentication error ! `,
+          text:`Invalid login credentials !! `,
+         
+          icon: "error"
+        });
+        // throw new Error(ddata.error || "Login failed");
+      }
+
+      else{
+        localStorage.setItem("token", ddata.token);
+        
+        setUser(ddata.user)
+        
+        sessionStorage.setItem("token", ddata.token); // Store token for authentication
+        Swal.fire({
+          title:`Welcome ${ddata.user.name} ! `,
+          text: "Login Successful !!",
+          icon: "success"
+        })
+        if(ddata.user.admin ){
+          router.push("/admin/db")
+        }
+      }
+      
+      
+
+     
+    } catch (err) {
+  
+      Swal.fire({
+        title:`Sorry there was an error loging you in ! `,
+        text:`something went wrong !! `,
+       
+        icon: "error"
+      });
+    } finally {
+      setLoading(false);
+    }
+   
   };
+  // setValue("email", logs.email);
 
   return (
     <div className="flex bggg justify-center items-center min-h-screen sm:min-h-[400px] md:min-h-[400px] lg:min-h-[400px] bg-gradient-to-br from-gray-100 to-gray-300">
@@ -39,49 +98,63 @@ export default function Records() {
         transition={{ duration: 0.5 }} 
         className="w-full max-w-md p-3 bg-white shadow-lg rounded-lg"
       >
-        <h2 className="text-2xl font-bold text-center text-blue-700 mb-3">Life Blossom Records Login</h2>
+        <h2 className="text-2xl font-bold text-center text-blue-700 mb-3">Life Blossom Records</h2>
+       
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Username */}
-          <div className="flex items-center border rounded-md p-2 bg-gray-50">
-            <FaUser className="text-gray-500 mr-2" />
-            <input
-              type="text"
-              placeholder="Username"
-              {...register("username", { required: "Username is required" })}
-              className="w-full bg-transparent outline-none"
-            />
-          </div>
-          {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-4 border rounded-md w-80 mx-auto">
+      {/* Username */}
+      <div className="flex items-center border rounded-md p-2 bg-gray-50">
+        <FaUser className="text-gray-500 mr-2" />
+        <input
+          type="email"
+          // value={logs.email}
+          defaultValue={logs.email}
+          onChange={(e) => {
+            const email = e.target.value;
+           
+            setValue("email", email, { shouldValidate: true }); // Sync with React Hook Form
+          }}
+          placeholder="Username"
+          {...register("email", { required: "email is required" })}
+          className="w-full bg-transparent outline-none"
+        />
+      </div>
+      {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
 
-          {/* Password */}
-          <div className="flex items-center border rounded-md p-2 bg-gray-50 relative">
-            <FaLock className="text-gray-500 mr-2" />
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              {...register("password", { required: "Password is required" })}
-              className="w-full bg-transparent outline-none"
-            />
-            <button 
-              type="button" 
-              onClick={() => setShowPassword(!showPassword)} 
-              className="absolute right-3 text-gray-500 hover:text-blue-500"
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
-          </div>
-          {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+      {/* Password */}
+      <div className="flex items-center border rounded-md p-2 bg-gray-50 relative">
+        <FaLock className="text-gray-500 mr-2" />
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          defaultValue={logs.pwrd}
+          onChange={(e) => {
+            const pwrd = e.target.value;
+    
+            setValue("pwrd", pwrd, { shouldValidate: true }); // Sync with React Hook Form
+          }}
+          {...register("pwrd", { required: "Password is required" })}
+          className="w-full bg-transparent outline-none"
+        />
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-3 text-gray-500 hover:text-blue-500"
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
+      {errors.pwrd && <p className="text-red-500 text-sm">{errors.pwrd.message}</p>}
 
-          {/* Login Button */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            className="w-full py-2 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 transition duration-300"
-            disabled={loading}
-          >
-            {loading ? "Logging in..." : "Login"}
-          </motion.button>
-        </form>
+      {/* Login Button */}
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        className="w-full py-2 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 transition duration-300"
+        disabled={loading}
+      >
+        {loading ? "Logging in..." : "Login"}
+      </motion.button>
+    </form>
       </motion.div>
     </div>
   );
