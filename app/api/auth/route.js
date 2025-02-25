@@ -50,6 +50,7 @@ export async function POST(req) {
       user: {...user,name:user.name,pwrd:"",hpwrd:"" ,admin:user.admin},
     });
   } catch (error) {
+    
     console.error("Login Error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
