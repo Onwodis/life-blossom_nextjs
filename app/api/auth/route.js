@@ -43,14 +43,14 @@ export async function POST(req) {
     const token = jwt.sign({ userid: user.userid }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-
+    
     return NextResponse.json({
       message: "Login successful",
       token,
       user: {...user,name:user.name,pwrd:"",hpwrd:"" ,admin:user.admin},
     });
   } catch (error) {
-    
+
     console.error("Login Error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
