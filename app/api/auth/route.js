@@ -15,7 +15,7 @@ export async function POST(req) {
     if (!email || !pwrd) {
       return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
     }
-    const hpwrd = await bcrypt.hash("obiajulu",10)
+    // const hpwrd = await bcrypt.hash("obiajulu",10)
     // await User.create({
     //   name:"Samuel Onwodi",
     //   username:"Samuel Onwodi",
@@ -50,7 +50,7 @@ export async function POST(req) {
       user: {...user,name:user.name,pwrd:"",hpwrd:"" ,admin:user.admin},
     });
   } catch (error) {
-    // console.error("Login Error:", error);
+    console.error("Login Error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
