@@ -11,7 +11,8 @@ import { useRouter } from "next/navigation";
 export default function Records() {
   const { api,profile,setData ,setUser,user,drop} = useAppContext();
   const router = useRouter(); 
-  const [logs, setLogs] = useState({ email: process.env.adminemail, pwrd: process.env.adminpwrd })
+  const [logs, setLogs] = useState({ email:"", pwrd:"" })
+  // const [logs, setLogs] = useState({ email: process.env.adminemail, pwrd: process.env.adminpwrd })
   
 
   useEffect(() => {
