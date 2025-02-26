@@ -1,22 +1,56 @@
-"use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Sidebar from "/components/admin/Sidebar";
-import Header from "/components/admin/Header";
+import { Geist, Geist_Mono } from "next/font/google";
+import "../globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Head from "next/head";
+import Navbar from "../components/admin/Navbar";
+import Footer from "../components/admin/Footer";
+import { AppProvider } from "../components/home/myContext";
 
-export default function DashboardLayout({ children }) {
-  const router = useRouter();
+import Sidebar from "../components/admin/Sidebar";
+import Header from "../components/admin/Header";
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.push("/login"); // Redirect to login if no token
-    }
-  }, []);
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata = {
+  title: "Life blossom (admin)",
+  description: "We provide medical solutions",
+  icons: {
+    icon: "/images/logo.png"
+  }
+};
+
+export default function RootLayout({
+  children,
+}) {
+  
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <html data-theme="winter" lang="en">
+        <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="/images/logo.png" sizes="48x48" />
+        <link rel="icon" type="image/svg+xml" href="/images/logo.png" />
+      </Head>
+        
+        
+
+      <body
+        className="w-100"
+      >
+        <AppProvider>
+     < Navbar />
+
+        <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <Sidebar />
 
@@ -28,5 +62,12 @@ export default function DashboardLayout({ children }) {
         <main className="p-6 flex-1">{children}</main>
       </div>
     </div>
+        <Footer />
+      </AppProvider>
+
+      </body>
+    </html>
   );
 }
+
+

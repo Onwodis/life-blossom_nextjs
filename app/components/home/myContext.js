@@ -10,6 +10,9 @@ export const useAppContext = () => useContext(AppContext);
 // Context provider
 export const AppProvider = ({ children }) => {
   const [user, setUser] = useState({})
+  const drop = (uuser) => {
+    setUser((prev)=>({...prev,...uuser}))
+  }
   const [data, setData] = useState({
     home: false,
     about: false,
@@ -29,7 +32,7 @@ export const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ data,user,setUser, setData,profile, setProfile }}>
+    <AppContext.Provider value={{ data,user,setUser,drop, setData,profile, setProfile }}>
       {children}
     </AppContext.Provider>
   );

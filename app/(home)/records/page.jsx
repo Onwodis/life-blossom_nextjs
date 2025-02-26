@@ -9,12 +9,14 @@ import { useAppContext } from "../../components/home/myContext";
 
 import { useRouter } from "next/navigation";
 export default function Records() {
-  const { api,profile,setData ,setUser} = useAppContext();
+  const { api,profile,setData ,setUser,user,drop} = useAppContext();
   const router = useRouter(); 
-  const [logs, setLogs] = useState({ email: "samuelonwodi@yahoo.com", pwrd: "obiajulu" })
+  const [logs, setLogs] = useState({ email: process.env.adminemail, pwrd: process.env.adminpwrd })
   
 
-  
+  useEffect(() => {
+    console.log("User updated:", user.name);
+  }, [user]); // Runs every time `user` changes
 
   useEffect(() => {
     setData(() => ({
@@ -30,7 +32,9 @@ export default function Records() {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password
 
   const onSubmit = async(data) => {
+    
     setLoading(true);
+
 
     try {
       const res = await fetch("/api/auth", {
@@ -42,9 +46,6 @@ export default function Records() {
       const ddata = await res.json();
 
       setLoading(false);
-     
-      
-     
 
       if (!res.ok) {
         Swal.fire({
@@ -57,18 +58,26 @@ export default function Records() {
       }
 
       else{
-        localStorage.setItem("token", ddata.token);
+        const set = JSON.stringify(ddata.user)
+        sessionStorage.setItem("user",set );
+        sessionStorage.setItem("token",ddata.token );
+        // alert(JSON.stringify(ddata.user))
+    
         
-        setUser(ddata.user)
+        setUser((prev) => ({ ...prev, ...ddata.user }));
+
         
-        sessionStorage.setItem("token", ddata.token); // Store token for authentication
+        // sessionStorage.setItem("token", ddata.token); // Store token for authentication
         Swal.fire({
           title:`Welcome ${ddata.user.name} ! `,
           text: "Login Successful !!",
           icon: "success"
         })
         if(ddata.user.admin ){
-          router.push("/admin/db")
+          // router.push("/contact")
+
+          router.push("/admindb")
+          
         }
       }
       
@@ -155,7 +164,9 @@ export default function Records() {
         {loading ? "Logging in..." : "Login"}
       </motion.button>
     </form>
+          
       </motion.div>
+
     </div>
   );
 }

@@ -19,7 +19,7 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className="text-light col-12 border-danger">
+    <div style={{ width: "100%", overflow: "hidden" }} className="text-light col-12">
       <marquee className="col-12 p-0 w-100">{currentTip}</marquee>
     </div>
   );
