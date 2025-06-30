@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌸 Life Blossom E‑Portal
 
-## Getting Started
+[![Live Demo](https://img.shields.io/badge/demo-online-brightgreen)](https://lifeblossom.netlify.app)
 
-First, run the development server:
+**Life Blossom** is a Next.js‑powered electronic health records portal built to help **Life Blossom Hospital & Care** staff securely manage patient data, appointments, and treatments—all in one elegant, responsive interface.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Table of Contents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. [Overview](#overview)  
+2. [Live Demo](#live-demo)  
+3. [Features](#features)  
+4. [Tech Stack](#tech-stack)  
+5. [Folder Structure](#folder-structure)  
+6. [Getting Started](#getting-started)  
+7. [Environment Variables](#environment-variables)  
+8. [Scripts](#scripts)  
+9. [Contributing](#contributing)  
+10. [License](#license)  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📖 Overview
 
-To learn more about Next.js, take a look at the following resources:
+Life Blossom E‑Portal streamlines the entire patient–caregiver workflow:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Patient Registration & Profiles**  
+- **Appointment Scheduling**  
+- **Medical History & Notes**  
+- **Lab Results & Imaging**  
+- **Secure Role‑Based Access (Doctors, Nurses, Admin)**  
+- **Audit Logs & Reports**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Built with scalability, performance, and security in mind, the portal ensures patient data privacy and HIPAA‑like compliance.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔗 Live Demo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+➡️ https://lifeblossom.netlify.app
+
+---
+
+## 🎯 Features
+
+- **👩‍⚕️ Role‑Based Authentication**  
+  Doctors, nurses, and admins each see tailored dashboards.
+
+- **📝 Patient Profiles**  
+  Create, update, and view comprehensive patient records.
+
+- **📅 Appointment Management**  
+  Book, reschedule, and cancel appointments with calendar integration.
+
+- **💊 Treatment Plans & Prescriptions**  
+  Track medications, dosages, and treatment notes.
+
+- **📊 Reporting & Analytics**  
+  Generate daily census, discharge summaries, and utilization charts.
+
+- **🔒 Secure Data Storage**  
+  Encrypted persistence using Firestore (or your chosen DB).
+
+- **⚙️ Audit Trails**  
+  Full log of who accessed or modified which records and when.
+
+---
+
+## 🏗️ Tech Stack
+
+- **Framework:** Next.js (React + SSR)  
+- **Language:** TypeScript  
+- **Styling:** Tailwind CSS  
+- **State Management:** Zustand / React Context  
+- **Forms & Validation:** React Hook Form, Zod  
+- **Authentication & Auth:** Firebase Auth (Email/Password + Roles)  
+- **Database:** Firestore (or MongoDB/Prisma alternative)  
+- **Charts & Visuals:** Recharts / Chart.js  
+- **Animations:** Framer Motion  
+- **i18n:** next‑intl / react‑intl  
+- **Hosting:** Vercel / Netlify  
+- **CI/CD:** GitHub Actions  
+
+---
+
+## 📂 Folder Structure
+
